@@ -200,6 +200,7 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
 
     /**
      * Send async request without response object.
+     * 发送不需要返回的
      *
      * @param channel the channel
      * @param msg     the msg
@@ -211,6 +212,15 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
         return sendAsyncRequest(null, channel, msg, 0);
     }
 
+    /**
+     * 此方法为需要等待同步返回时间
+     * @param address
+     * @param channel
+     * @param msg
+     * @param timeout
+     * @return
+     * @throws TimeoutException
+     */
     private Object sendAsyncRequest(String address, Channel channel, Object msg, long timeout)
         throws TimeoutException {
         if (channel == null) {
@@ -387,6 +397,7 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
                     }
                 }
             } else {
+                //需要同步回复的消息直接处理
                 MessageFuture messageFuture = futures.remove(rpcMessage.getId());
                 if (LOGGER.isDebugEnabled()) {
                     LOGGER.debug(String
@@ -396,6 +407,7 @@ public abstract class AbstractRpcRemoting extends ChannelDuplexHandler implement
                 if (messageFuture != null) {
                     messageFuture.setResultMessage(rpcMessage.getBody());
                 } else {
+                    //不需要同步回复，直接进行消息的处理
                     try {
                         AbstractRpcRemoting.this.messageExecutor.execute(new Runnable() {
                             @Override

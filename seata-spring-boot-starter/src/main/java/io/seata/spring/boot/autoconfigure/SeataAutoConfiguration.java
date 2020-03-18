@@ -15,6 +15,7 @@
  */
 package io.seata.spring.boot.autoconfigure;
 
+import com.alibaba.druid.pool.xa.DruidXADataSource;
 import io.seata.spring.annotation.GlobalTransactionScanner;
 import io.seata.spring.boot.autoconfigure.properties.SeataProperties;
 import io.seata.spring.boot.autoconfigure.util.SpringUtils;
@@ -51,6 +52,7 @@ public class SeataAutoConfiguration {
     @DependsOn({"springUtils"})
     @ConditionalOnMissingBean(GlobalTransactionScanner.class)
     public GlobalTransactionScanner globalTransactionScanner() {
+        DruidXADataSource s;
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Automatically configure Seata");
         }

@@ -63,7 +63,7 @@ public abstract class AbstractServerTest {
 
                     rpcServer = new RpcServer(workingThreads);
                     //server port
-                    rpcServer.setListenPort(parameterParser.getPort());
+                    rpcServer.setListenPort(8190);
                     UUIDGenerator.init(parameterParser.getServerNode());
                     //log store mode : file、db
                     SessionHolder.init(parameterParser.getStoreMode());

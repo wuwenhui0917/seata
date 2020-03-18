@@ -137,6 +137,8 @@ public class NettyPoolableFactory implements KeyedPoolableObjectFactory<NettyPoo
     @Override
     public void activateObject(NettyPoolKey key, Channel obj) throws Exception {
 
+
+
     }
 
     @Override

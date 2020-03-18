@@ -46,7 +46,7 @@ public class ParameterParser {
     private static final String PROGRAM_NAME
         = "sh seata-server.sh(for linux and mac) or cmd seata-server.bat(for windows)";
 
-    private static final int SERVER_DEFAULT_PORT = 8091;
+    private static final int SERVER_DEFAULT_PORT = 8191;
     private static final String SERVER_DEFAULT_STORE_MODE = "file";
     private static final int SERVER_DEFAULT_NODE = 1;
 
